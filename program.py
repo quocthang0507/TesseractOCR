@@ -10,7 +10,7 @@ predicted_license_plates = []
 
 for path_to_license_plate in glob.glob(path_for_license_plates, recursive=True):
 
-    license_plate_file = path_to_license_plate.split("/")[-1]
+    license_plate_file = path_to_license_plate.split("\\")[-1]
     license_plate, _ = os.path.splitext(license_plate_file)
     '''
 	Here we append the actual license plate to a list
@@ -29,8 +29,9 @@ for path_to_license_plate in glob.glob(path_for_license_plates, recursive=True):
 	license plate. We append the predicted_result in a
 	list and compare it with the original the license plate
 	'''
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     predicted_result = pytesseract.image_to_string(img, lang='eng',
-                                                   config='--oem 3 --psm 6 -c tessedit_char_whitelist = ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+                                                   config='--oem 3 --psm 7 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
 
     filter_predicted_result = "".join(
         predicted_result.split()).replace(":", "").replace("-", "")
