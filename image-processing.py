@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
+
 # Read the license plate file and display it
 test_license_plate = cv2.imread(os.getcwd() + "/license-plates / GWT2180.jpg")
 plt.imshow(test_license_plate)
